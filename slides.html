@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Self-introduction - Huang Yu-Jun</title>
+<style>
+:root{
+  --ink:#0A0A0A;      /* main */
+  --paper:#F2F2F0;    /*text on main */
+  --blue:#1F7AE0;     /* contrast: lines, small labels */
+  --red:#E30613;      /* accent: one highlight per slide */
+  --muted:#8A8A8A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;background:var(--ink)}
+body{background:var(--ink);color:var(--paper);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Helvetica Neue","Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  -webkit-font-smoothing:antialiased}
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;
+  padding:10vh 9vw;position:relative;overflow:hidden}
+.slide>*{max-width:1000px;min-width:0}
+h1{font-size:clamp(44px,8vw,112px);font-weight:700;letter-spacing:-.03em;line-height:1.02}
+h2{font-size:clamp(34px,5vw,68px);font-weight:700;letter-spacing:-.02em;line-height:1.08;
+  padding-bottom:3vh;margin-bottom:5vh;position:relative}
+h2::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .9s ease .1s}
+.slide.on h2::after{transform:scaleX(1)}
+.sub{font-size:clamp(18px,2vw,28px);color:var(--muted);margin-top:3vh;line-height:1.5}
+.lines{list-style:none}
+.lines li{font-size:clamp(22px,3vw,40px);line-height:1.3;padding:1.6vh 0;display:flex;gap:2.5vw;align-items:baseline;overflow-wrap:anywhere}
+.lines .k{flex:0 1 clamp(120px,16vw,230px);font-size:clamp(14px,1.4vw,20px);color:var(--blue);font-weight:600}
+.red{color:var(--red)}
+.big{font-size:clamp(40px,6.5vw,96px);font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.agenda{list-style:none;counter-reset:a}
+.agenda li{counter-increment:a;font-size:clamp(22px,3vw,40px);padding:1vh 0;border-bottom:1px solid #222;display:flex;gap:3vw;overflow-wrap:anywhere}
+.agenda li::before{content:counter(a);color:var(--blue);width:1.2em;font-weight:600}
+.plan li .k{flex-basis:clamp(90px,10vw,150px)}
+.plan li{font-size:clamp(18px,2.2vw,30px)}
+
+/* motion: each item rises in once, in order */
+.slide :is(h1,.sub,.big,.lines li,.agenda li){opacity:0;transform:translateY(18px);
+  transition:opacity .6s ease,transform .6s ease;transition-delay:calc(var(--i,0)*120ms + 150ms)}
+.slide.on :is(h1,.sub,.big,.lines li,.agenda li){opacity:1;transform:none}
+/* logo panel */
+/* plan timeline line */
+.plan{position:relative;padding-left:2.5vw}
+.plan::before{content:"";position:absolute;left:0;top:1vh;bottom:1vh;width:2px;background:var(--blue);
+  transform:scaleY(0);transform-origin:top;transition:transform 1.6s ease .3s}
+.slide.on .plan::before{transform:scaleY(1)}
+/* race track */
+.split .lines{max-width:44vw}
+.split .video-wrap{position:absolute;right:5vw;top:50%;width:min(600px,30vw,44vh);aspect-ratio:600/962;transform:translateY(-50%)}
+.track{position:absolute;right:5vw;bottom:14vh;width:34vw;max-width:520px;height:auto;overflow:visible}
+.track .line{fill:none;stroke:var(--blue);stroke-width:3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s ease .4s}
+.slide.on .track .line{stroke-dashoffset:0}
+.track .kart{fill:var(--red);opacity:0;transition:opacity .4s ease 2.4s}
+.slide.on .track .kart{opacity:1}
+.video-slide{align-items:flex-start}
+.video-slide h2{margin-bottom:3vh}
+.video-wrap{width:min(100%,960px);aspect-ratio:16/9;background:#111;border:1px solid #333;display:flex;align-items:center;justify-content:center}
+.video-wrap video{display:block;width:100%;height:100%;object-fit:contain}
+.family-slide>*:not(.family-photo){max-width:56%}
+.family-photo{position:absolute;right:8vw;top:50%;width:min(30vw,360px);max-height:62vh;aspect-ratio:1/1;transform:translateY(-50%);object-fit:cover;border:2px solid #333;border-radius:4px}
+@media (max-width:700px){
+  .slide{height:100vh;min-height:100vh;padding:7vh 7vw}
+  h1{font-size:clamp(40px,12vw,72px)}
+  h2{font-size:clamp(28px,7vw,42px);padding-bottom:1.5vh;margin-bottom:2.5vh}
+  .lines li{font-size:clamp(18px,5.5vw,28px);gap:4vw;align-items:flex-start}
+  .lines .k{flex:0 0 clamp(84px,24vw,140px)}
+  .agenda li{font-size:clamp(16px,4.5vw,24px);line-height:1.15;padding:.5vh 0;gap:4vw}
+  .sub{font-size:clamp(16px,4.5vw,22px)}
+  .split .lines{max-width:100%}
+  .split .lines li{font-size:clamp(16px,4vw,20px);line-height:1.15;padding:.6vh 0}
+  .track{position:relative;right:auto;bottom:auto;width:42%;margin:1vh auto 0}
+  .plan li{font-size:clamp(14px,3.8vw,20px);line-height:1.2;padding:.7vh 0}
+  .plan li .k{flex-basis:clamp(66px,18vw,100px)}
+  .video-wrap{height:clamp(130px,32vw,190px);aspect-ratio:auto}
+  .video-slide .sub{margin-top:1.5vh}
+  .split .video-wrap{position:relative;right:auto;top:auto;width:min(42vw,180px);height:auto;aspect-ratio:600/962;margin:2vh auto 0;transform:none}
+  .family-slide>*:not(.family-photo){max-width:58%}
+  .family-photo{right:7vw;width:31vw;max-height:38vh}
+}
+@media (prefers-reduced-motion:reduce){
+  .slide :is(h1,.sub,.big,.lines li,.agenda li){opacity:1!important;transform:none!important;transition:none!important}
+  h2::after,.plan::before,.track .line{transform:none!important;stroke-dashoffset:0!important;transition:none!important}
+  .track .kart{opacity:1;display:none}
+}
+#pager{position:fixed;top:3.5vh;right:4vw;font-size:15px;color:var(--muted);font-variant-numeric:tabular-nums;z-index:5}
+#hint{position:fixed;bottom:2vh;left:0;right:0;text-align:center;font-size:12px;color:#5E5E5E;z-index:5;pointer-events:none}
+@media print{
+  :root{--ink:#fff;--paper:#111;--muted:#555}
+  @page{size:A4 landscape;margin:0}
+  html,body{background:#fff;scroll-snap-type:none}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .slide{min-height:0;height:210mm;width:297mm;break-after:page;page-break-after:always;break-inside:avoid;padding:18mm 24mm}
+  .agenda li{border-color:#ddd}
+  #pager,#hint{display:none}
+  .slide :is(h1,.sub,.big,.lines li,.agenda li){opacity:1!important;transform:none!important;transition:none!important}
+  h2::after,.plan::before{transform:none!important;transition:none!important}
+  .track .line{stroke-dashoffset:0!important;transition:none!important}
+  .track .kart{display:none}
+}
+</style>
+</head>
+<body>
+<div id="pager">01 / 10</div>
+<div id="hint">&#8592;&#8594; to move &middot; Space for next &middot; F for full screen</div>
+
+<section class="slide">
+  <h1>Huang Yu-Jun</h1>
+  <p class="sub">Information Management student. I build websites and write about code.</p>
+</section>
+
+<section class="slide">
+  <h2>What I will cover</h2>
+  <ol class="agenda">
+    <li>Personal Information</li>
+    <li>My Major</li>
+    <li>Family</li>
+    <li>Specialty</li>
+    <li>Interests &amp; Hobbies</li>
+    <li>Personality &amp; Appearance</li>
+    <li>My Plan in College</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <h2>Personal Information</h2>
+  <ul class="lines">
+    <li><span class="k">Name</span>Huang Yu-Jun (&#x9EC3;&#x5BA5;&#x921E;)</li>
+    <li><span class="k">Birthday</span>September 6, 2007</li>
+    <li><span class="k">Hometown</span><span class="red">Chiayi</span></li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>My Major</h2>
+  <p class="big">Information <span class="red">Management</span></p>
+  <p class="sub">Technology, data, and how people use them in organizations.</p>
+</section>
+
+<section class="slide family-slide">
+  <h2>Family</h2>
+  <p class="big">My parents and me.</p>
+  <p class="big" style="margin-top:3vh">Plus <span class="red"><span data-count="4">4</span> dogs</span> and <span data-count="1">1</span> cat.</p>
+  <p class="sub">I have no brothers or sisters.</p>
+  <img class="family-photo" src="20260913_093918.jpg" alt="One of my dogs">
+</section>
+
+<section class="slide">
+  <h2>Specialty</h2>
+  <ul class="lines">
+    <li><span class="k">Websites</span><span class="red">Building web projects from scratch</span></li>
+    <li><span class="k">C++</span>APCS certified</li>
+    <li><span class="k">Writing</span>A tech blog with 21 articles</li>
+  </ul>
+  <p class="sub">I enjoy turning ideas into useful digital projects.</p>
+</section>
+
+<section class="slide split">
+  <h2>Interests &amp; Hobbies</h2>
+  <ul class="lines">
+    <li><span class="k">On the track</span><span class="red">Go-karting</span></li>
+    <li><span class="k">On screen</span>Racing games and racing in general</li>
+    <li><span class="k">Every week</span>Sports</li>
+    <li><span class="k">For fun</span>Creating websites</li>
+  </ul>
+  <div class="video-wrap">
+    <video controls autoplay muted playsinline preload="metadata">
+      <source src="VID_20261026_073144_975.mp4" type="video/mp4">
+      Your browser does not support HTML video.
+    </video>
+  </div>
+</section>
+
+<section class="slide">
+  <h2>Personality &amp; Appearance</h2>
+  <ul class="lines">
+    <li><span class="k">Personality</span><span class="red">ENTJ</span></li>
+    <li><span class="k">Hair</span>Black</li>
+    <li><span class="k">Glasses</span>None</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h2>My Plan in College</h2>
+  <ul class="lines plan">
+    <li><span class="k">Year 1</span>Build a strong base in Python, C++, databases, and web basics.</li>
+    <li><span class="k">Year 2</span>Study systems analysis, databases, and networks. Ship one complete website or app.</li>
+    <li><span class="k">Year 3</span>Join a competition or an internship. Prepare for certifications.</li>
+    <li><span class="k">Year 4</span><span class="red">Finish a capstone project worth showing.</span> Prepare for a job or graduate school.</li>
+  </ul>
+</section>
+
+<section class="slide">
+  <h1>Thank you.</h1>
+  <ul class="lines" style="margin-top:6vh">
+    <li><span class="k">Email</span>charlie960906@gmail.com</li>
+    <li><span class="k">Interests</span>Racing, sports, and web projects</li>
+  </ul>
+</section>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var pager=document.getElementById('pager');
+  var cur=0;
+  function pad(n){return (n<10?'0':'')+n}
+  function show(i){cur=i;pager.textContent=pad(i+1)+' / '+pad(slides.length)}
+  slides.forEach(function(s){
+    [].slice.call(s.querySelectorAll('h1,.sub,.big,.lines li,.agenda li')).forEach(function(el,i){el.style.setProperty('--i',i)});
+  });
+  function count(s){
+    [].slice.call(s.querySelectorAll('[data-count]')).forEach(function(el){
+      var to=+el.dataset.count,t0=null;el.textContent='0';
+      function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/900);el.textContent=Math.round(to*p);if(p<1)requestAnimationFrame(step)}
+      setTimeout(function(){requestAnimationFrame(step)},700);
+    });
+  }
+  function syncVideo(s){
+    [].slice.call(s.querySelectorAll('video')).forEach(function(video){
+      video.muted=true;
+      if(s.classList.contains('on')){
+        var playback=video.play();
+        if(playback&&playback.catch)playback.catch(function(error){console.warn('Video autoplay could not start:',error)});
+      }else{
+        video.pause();
+      }
+    });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting&&e.intersectionRatio>=0.6){
+        show(slides.indexOf(e.target));
+        if(!e.target.classList.contains('on')){e.target.classList.add('on');count(e.target)}
+        syncVideo(e.target);
+      }else if(!e.isIntersecting){
+        e.target.classList.remove('on');
+        syncVideo(e.target);
+      }
+    });
+  },{threshold:[0,0.5]});
+  slides.forEach(function(s){io.observe(s)});
+  function go(i){
+    i=Math.max(0,Math.min(slides.length-1,i));
+    slides[i].scrollIntoView({behavior:'smooth'});show(i);
+    if(!slides[i].classList.contains('on')){slides[i].classList.add('on');count(slides[i])}
+    syncVideo(slides[i]);
+  }
+  document.addEventListener('keydown',function(e){
+    var k=e.key;
+    if(k==='ArrowRight'||k==='ArrowDown'||k===' '||k==='PageDown'){e.preventDefault();go(cur+1)}
+    else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp'){e.preventDefault();go(cur-1)}
+    else if(k==='Home'){e.preventDefault();go(0)}
+    else if(k==='End'){e.preventDefault();go(slides.length-1)}
+    else if(k==='f'||k==='F'){
+      if(!document.fullscreenElement)document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>
